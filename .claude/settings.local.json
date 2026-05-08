@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -fsSL https://composio.dev/install)",
+      "Bash(bash)",
+      "Bash(npm install *)",
+      "Bash(claude mcp *)",
+      "mcp__composio__COMPOSIO_SEARCH_TOOLS",
+      "mcp__composio__COMPOSIO_MULTI_EXECUTE_TOOL",
+      "mcp__composio__COMPOSIO_GET_TOOL_SCHEMAS",
+      "Bash(python3 -c ' *)",
+      "Bash(pip install *)",
+      "Bash(pip3 install *)",
+      "Bash(python3 -m pip install rembg[cpu] -q)",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "mcp__Claude_in_Chrome__switch_browser",
+      "mcp__Claude_in_Chrome__select_browser",
+      "mcp__Claude_in_Chrome__navigate",
+      "mcp__Claude_in_Chrome__computer",
+      "mcp__Claude_in_Chrome__read_page",
+      "mcp__Claude_in_Chrome__javascript_tool",
+      "Bash(git remote *)",
+      "Bash(git branch *)",
+      "Bash(git add *)",
+      "Bash(git rm *)"
+    ]
+  }
+}
