@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 import ScrollToTop from "@/components/ScrollToTop";
 import AnnouncementBanner from "@/components/AnnouncementBanner";
 import FloatingLiveButton from "@/components/FloatingLiveButton";
@@ -49,6 +50,13 @@ export default function RootLayout({
         {children}
         <ScrollToTop />
         <FloatingLiveButton />
+        {/* GHL AI Chat Widget */}
+        <Script
+          src="https://widgets.leadconnectorhq.com/loader.js"
+          data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+          data-widget-id="69e71f2006d5d5fc13d842b0"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );

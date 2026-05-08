@@ -40,15 +40,24 @@ export default function StayUpdated() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="max-w-2xl mx-auto card-glass rounded-2xl p-8 border border-white/10"
+          className="max-w-2xl mx-auto"
         >
-          {/* GHL Inline Form Embed */}
-          <div
-            className="inline-form-wrapper"
-            id="inline-1uY69mpQsh3XvrDqbXzj-div"
-            data-layout="true"
-            data-hl-type="inline"
-            data-src="https://api.leadconnectorhq.com/widget/form/1uY69mpQsh3XvrDqbXzj"
+          <iframe
+            src="https://api.leadconnectorhq.com/widget/form/1uY69mpQsh3XvrDqbXzj"
+            style={{ width: "100%", height: "1117px", border: "none", borderRadius: "8px" }}
+            id="inline-1uY69mpQsh3XvrDqbXzj"
+            data-layout="{'id':'INLINE'}"
+            data-trigger-type="alwaysShow"
+            data-trigger-value=""
+            data-activation-type="alwaysActivated"
+            data-activation-value=""
+            data-deactivation-type="neverDeactivate"
+            data-deactivation-value=""
+            data-form-name="FTV"
+            data-height="1117"
+            data-layout-iframe-id="inline-1uY69mpQsh3XvrDqbXzj"
+            data-form-id="1uY69mpQsh3XvrDqbXzj"
+            title="FTV"
           />
           <Script
             src="https://link.msgsndr.com/js/form_embed.js"
