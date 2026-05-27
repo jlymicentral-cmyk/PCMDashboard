@@ -155,7 +155,7 @@ export default async function StaffPage({ params }: { params: Promise<{ name: st
                 })}
               </div>
             ) : (
-              <p className="text-gray-600 text-sm">Walang area data.</p>
+              <p className="text-gray-600 text-sm">No area data available.</p>
             )}
 
             {/* Reachability */}
@@ -184,7 +184,7 @@ export default async function StaffPage({ params }: { params: Promise<{ name: st
           <div className="px-6 py-4 border-b border-gray-800 flex justify-between items-center">
             <div>
               <h2 className="font-bold text-white">Member List</h2>
-              <p className="text-sm text-gray-400 mt-0.5">{members.length} members assigned kay {displayName}</p>
+              <p className="text-sm text-gray-400 mt-0.5">{members.length} members assigned to {displayName}</p>
             </div>
           </div>
           <div className="overflow-x-auto">
@@ -222,7 +222,7 @@ export default async function StaffPage({ params }: { params: Promise<{ name: st
           </div>
         </div>
 
-        <p className="text-xs text-gray-600 text-right">Data mula sa GHL CRM · Updated: {lastUpdated} PHT</p>
+        <p className="text-xs text-gray-600 text-right">Data from GHL CRM · Updated: {lastUpdated} PHT</p>
       </div>
     </div>
   );

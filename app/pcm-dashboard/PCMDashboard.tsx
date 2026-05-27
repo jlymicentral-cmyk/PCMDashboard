@@ -5,7 +5,7 @@ const STAGE_INFO: { key: string; label: string; desc: string; color: string; bar
   {
     key:   "First Time Visitor",
     label: "First Time Visitor",
-    desc:  "Bagong dumalo sa simbahan — unang beses",
+    desc:  "First time to attend church",
     color: "bg-sky-500/15 border-sky-500/40 text-sky-300",
     bar:   "bg-sky-500",
     dot:   "bg-sky-400",
@@ -13,7 +13,7 @@ const STAGE_INFO: { key: string; label: string; desc: string; color: string; bar
   {
     key:   "Return Visitor",
     label: "Return Visitor (OGV)",
-    desc:  "Bumabalik na pero hindi pa regular — occasional goer",
+    desc:  "Returns occasionally but not yet regular",
     color: "bg-violet-500/15 border-violet-500/40 text-violet-300",
     bar:   "bg-violet-500",
     dot:   "bg-violet-400",
@@ -21,7 +21,7 @@ const STAGE_INFO: { key: string; label: string; desc: string; color: string; bar
   {
     key:   "Regular Attendee",
     label: "Regular Attendee",
-    desc:  "Regular na dumadalo — bawat Linggo",
+    desc:  "Attends every Sunday consistently",
     color: "bg-amber-500/15 border-amber-500/40 text-amber-300",
     bar:   "bg-amber-500",
     dot:   "bg-amber-400",
@@ -29,7 +29,7 @@ const STAGE_INFO: { key: string; label: string; desc: string; color: string; bar
   {
     key:   "Core Member",
     label: "Core Member",
-    desc:  "Aktibong miyembro — involved sa ministry",
+    desc:  "Active member involved in ministry",
     color: "bg-emerald-500/15 border-emerald-500/40 text-emerald-300",
     bar:   "bg-emerald-500",
     dot:   "bg-emerald-400",
@@ -37,7 +37,7 @@ const STAGE_INFO: { key: string; label: string; desc: string; color: string; bar
   {
     key:   "YOUTH",
     label: "Youth Track",
-    desc:  "Kabataan — under youth ministry",
+    desc:  "Youth — under youth ministry",
     color: "bg-pink-500/15 border-pink-500/40 text-pink-300",
     bar:   "bg-pink-500",
     dot:   "bg-pink-400",
@@ -104,8 +104,8 @@ export default async function PCMDashboard() {
           Spiritual Journey Funnel
         </h2>
         <p className="text-sm text-gray-400 mb-5">
-          Gaano karaming members ang nasa bawat stage ng kanilang faith journey.
-          Goal: ilipat ang bawat member pataas ng stage.
+          Number of members at each stage of their faith journey.
+          Goal: move every member up to the next stage.
         </p>
         <div className="space-y-3">
           {funnelTotals.map(f => {
@@ -139,8 +139,8 @@ export default async function PCMDashboard() {
       <div>
         <h2 className="text-lg font-bold text-white mb-1">Per PCM Staff Breakdown</h2>
         <p className="text-sm text-gray-400 mb-4">
-          Bawat PCM staff ay may responsibilidad sa kanilang mga assigned members.
-          Nakikita dito kung gaano na karami ang na-disciple at nasa anong stage na sila.
+          Each PCM staff is responsible for their assigned members.
+          Shows how many have been discipled and what stage they are in.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {merged.map(s => <StaffCard key={s.staff} stats={s} total={total} />)}
@@ -151,7 +151,7 @@ export default async function PCMDashboard() {
       <div className="bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden">
         <div className="px-6 py-4 border-b border-gray-800">
           <h2 className="font-bold text-white">Summary Table — Staff vs. Member Stage</h2>
-          <p className="text-sm text-gray-400 mt-1">Madaling makita kung sino ang may maraming FTV (baguhan) at kung sino ang may maraming Core Members (mature).</p>
+          <p className="text-sm text-gray-400 mt-1">Quickly see who has the most First Time Visitors vs. Core Members per staff.</p>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
@@ -210,24 +210,24 @@ export default async function PCMDashboard() {
 
       {/* Key Insights */}
       <div className="bg-gray-900 rounded-2xl border border-gray-800 p-6">
-        <h2 className="font-bold text-white mb-3">Key Insights para sa Management</h2>
+        <h2 className="font-bold text-white mb-3">Key Insights for Management</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
           <div className="bg-gray-800 rounded-xl p-4">
-            <div className="text-gray-400 mb-1">Pinaka-maraming members</div>
+            <div className="text-gray-400 mb-1">Most members assigned</div>
             {(() => {
               const top = [...merged].sort((a,b) => b.total - a.total)[0];
               return <div className="text-white font-bold text-lg capitalize">{top?.staff} <span className="text-gray-400 font-normal text-sm">({top?.total} members)</span></div>;
             })()}
           </div>
           <div className="bg-gray-800 rounded-xl p-4">
-            <div className="text-gray-400 mb-1">Pinaka-maraming Core Members</div>
+            <div className="text-gray-400 mb-1">Most Core Members</div>
             {(() => {
               const top = [...merged].sort((a,b) => (b.byType["Core Member"]??0) - (a.byType["Core Member"]??0))[0];
               return <div className="text-white font-bold text-lg capitalize">{top?.staff} <span className="text-gray-400 font-normal text-sm">({top?.byType["Core Member"]??0} core)</span></div>;
             })()}
           </div>
           <div className="bg-gray-800 rounded-xl p-4">
-            <div className="text-gray-400 mb-1">Pinaka-maraming baguhan (FTV)</div>
+            <div className="text-gray-400 mb-1">Most First Time Visitors</div>
             {(() => {
               const top = [...merged].sort((a,b) => (b.byType["First Time Visitor"]??0) - (a.byType["First Time Visitor"]??0))[0];
               return <div className="text-white font-bold text-lg capitalize">{top?.staff} <span className="text-gray-400 font-normal text-sm">({top?.byType["First Time Visitor"]??0} FTV)</span></div>;
@@ -236,7 +236,7 @@ export default async function PCMDashboard() {
         </div>
       </div>
 
-      <p className="text-xs text-gray-600 text-right">Data mula sa GHL CRM · Updated: {lastUpdated} PHT</p>
+      <p className="text-xs text-gray-600 text-right">Data from GHL CRM · Updated: {lastUpdated} PHT</p>
     </div>
   );
 }
@@ -256,7 +256,7 @@ function StaffCard({ stats, total }: { stats: StaffStats; total: number }) {
         </div>
         <div>
           <div className="text-white font-extrabold text-xl capitalize">{stats.staff}</div>
-          <div className="text-white/70 text-sm">{stats.total} members · {staffPct}% ng total</div>
+          <div className="text-white/70 text-sm">{stats.total} members · {staffPct}% of total</div>
         </div>
       </div>
 
