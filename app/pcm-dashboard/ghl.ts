@@ -65,6 +65,52 @@ function getTypeFromTags(c: Contact): string {
   return tag ? tag.replace("type:", "") : "";
 }
 
+export type MemberContact = {
+  id: string;
+  name: string;
+  phone: string;
+  email: string;
+  address: string;
+  stage: string;
+  area: string;
+  tags: string[];
+};
+
+export async function getStaffMembers(staffName: string): Promise<{
+  members: MemberContact[];
+  lastUpdated: string;
+}> {
+  const contacts = await fetchAllPCMContacts();
+  const lower = staffName.toLowerCase();
+
+  const members: MemberContact[] = contacts
+    .filter(c => {
+      const staffField = getFieldValue(c, PCM_STAFF_FIELD).toLowerCase();
+      const staffTag   = getStaffFromTags(c).toLowerCase();
+      return staffField === lower || staffTag === lower;
+    })
+    .map(c => {
+      const rawType  = getFieldValue(c, MEMBER_TYPE_FIELD) || getTypeFromTags(c) || "unknown";
+      const typeLabel = TYPE_LABELS[rawType.toLowerCase()] ?? rawType.toUpperCase();
+      const area = c.tags?.find(t => t.startsWith("area:"))?.replace("area:", "") ?? "";
+      return {
+        id:      c.id,
+        name:    c.contactName ?? "",
+        phone:   c.phone ?? "",
+        email:   (c as any).email ?? "",
+        address: (c as any).address1 ?? "",
+        stage:   typeLabel,
+        area,
+        tags:    c.tags ?? [],
+      };
+    });
+
+  return {
+    members,
+    lastUpdated: new Date().toLocaleString("en-PH", { timeZone: "Asia/Manila" }),
+  };
+}
+
 export async function getPCMStats(): Promise<{
   staffStats: StaffStats[];
   total: number;

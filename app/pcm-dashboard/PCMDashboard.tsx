@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getPCMStats, StaffStats } from "./ghl";
 
 const STAGE_INFO: { key: string; label: string; desc: string; color: string; bar: string; dot: string }[] = [
@@ -247,6 +248,7 @@ function StaffCard({ stats, total }: { stats: StaffStats; total: number }) {
   const staffPct = Math.round((stats.total / total) * 100);
 
   return (
+    <Link href={`/pcm-dashboard/staff/${stats.staff.toLowerCase()}`} className="block hover:scale-[1.01] transition-transform">
     <div className="bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden">
       <div className={`bg-gradient-to-r ${gradient} px-6 py-4 flex items-center gap-4`}>
         <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white font-extrabold text-lg">
@@ -282,7 +284,13 @@ function StaffCard({ stats, total }: { stats: StaffStats; total: number }) {
             </div>
           );
         })}
+        <div className="pt-3 border-t border-gray-800">
+          <span className="text-xs text-gray-500 hover:text-gray-300 transition-colors">
+            View full analytics →
+          </span>
+        </div>
       </div>
     </div>
+    </Link>
   );
 }
