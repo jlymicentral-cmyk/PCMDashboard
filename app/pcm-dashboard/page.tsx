@@ -1,12 +1,11 @@
 import { Suspense } from "react";
 import PCMDashboard from "./PCMDashboard";
 
-export const metadata = { title: "PCM Dashboard — JLYCC" };
 export const dynamic = "force-dynamic";
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-gray-950 text-white p-6">
+    <div className="p-6">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-white">PCM Dashboard</h1>
